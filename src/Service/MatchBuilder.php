@@ -112,14 +112,20 @@ class MatchBuilder
                     $team->getPlayer($details['inPlayerNumber'])->goToPlay($minute);
                     $team->getPlayer($details['outPlayerNumber'])->goToBench($minute);
                     break;
+
                 case 'goal':
                     $team = $this->getTeamByName($match, $details['team']);
                     $team->addGoal();
                     $player = $team->getPlayer($event['details']['playerNumber']);
                     $player->scoreUp();
-
+                    break;         
+                case 'yellowCard':
+                    $team = $this->getTeamByName($match, $details['team']);
+                    $player = $team->getPlayer($event['details']['playerNumber']);
+                    $player->giveOutYellowCard();
                     break;
-
+                default:
+                break;
             }
 
             $match->addMessage(

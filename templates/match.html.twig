@@ -125,6 +125,13 @@
                            <img src="https://www.soccer.ru/sites/all/themes/newtheme/images/events-icons/goal.png">
                            {% endfor %}
                            {% endif %} 
+
+                           {% if(player.getYellowCardsCount() > 0) %}
+                           {% for cards in 0..(player.getYellowCardsCount() - 1) %}
+                            <img src="https://www.soccer.ru/sites/all/themes/newtheme/images/events-icons/card.png">
+                           {% endfor %}
+                           {% endif %} 
+
                            {{ player.name }}
                             
                         </td>
