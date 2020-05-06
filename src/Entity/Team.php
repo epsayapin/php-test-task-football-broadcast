@@ -13,7 +13,7 @@ class Team
     private array $players;
     private string $coach;
     private int $goals;
-    public array $playTimeByRole;
+    private array $playTimeByRole = [];
 
     public function __construct(string $name, string $country, string $logo, array $players, string $coach)
     {
@@ -108,41 +108,44 @@ class Team
 
 
     public function getPlayTimeByRole($role)
-    {
+    {   
 
-        $forward = 0;
-        $midfielder = 0;
-        $goalkeeper = 0;
-        $quarterback = 0;
+        if(count($this->playTimeByRole) == 0)
+        {
+            $forward = 0;
+            $midfielder = 0;
+            $goalkeeper = 0;
+            $quarterback = 0;
 
-        $players = $this->players;
+            $players = $this->players;
 
-        foreach ($players as $player) {
-            switch ($player->getRole()) {
-                case 'Н':
-                    $forward += $player->getPlayTime();
-                    break;
-                case 'В':
-                    $goalkeeper += $player->getPlayTime();
-                    break;
-                case 'П':
-                    $midfielder += $player->getPlayTime();
-                    break;
-                case 'З':
-                    $quarterback += $player->getPlayTime();
-                    break;            
-                default:
-                    # code...
-                    break;
+            foreach ($players as $player) {
+                switch ($player->getRole()) {
+                    case 'Н':
+                        $forward += $player->getPlayTime();
+                        break;
+                    case 'В':
+                        $goalkeeper += $player->getPlayTime();
+                        break;
+                    case 'П':
+                        $midfielder += $player->getPlayTime();
+                        break;
+                    case 'З':
+                        $quarterback += $player->getPlayTime();
+                        break;            
+                    default:
+                        # code...
+                        break;
+                }
             }
+
+            $this->playTimeByRole['forward'] = $forward;
+            $this->playTimeByRole['midfielder'] = $midfielder;
+            $this->playTimeByRole['quarterback'] = $quarterback;
+            $this->playTimeByRole['goalkeeper'] = $goalkeeper;     
         }
 
-        $this->playTimeByRole['forward'] = $forward;
-        $this->playTimeByRole['midfielder'] = $midfielder;
-        $this->playTimeByRole['quarterback'] = $quarterback;
-        $this->playTimeByRole['goalkeeper'] = $goalkeeper;        
- 
-        return $this->playTimeByRole[$role];
+            return $this->playTimeByRole[$role];
     }
 
 
