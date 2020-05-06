@@ -78,9 +78,7 @@ class MatchBuilder
 
         }
 
-        $playTimeByRole = 100;
-
-        return new Team($teamInfo['title'], $teamInfo['country'], $teamInfo['logo'], $players, $teamInfo['coach'], $playTimeByRole);
+        return new Team($teamInfo['title'], $teamInfo['country'], $teamInfo['logo'], $players, $teamInfo['coach']);
     }
 
     private function processLogs(Match $match, array $logs): void
@@ -114,13 +112,12 @@ class MatchBuilder
                     $team->getPlayer($details['inPlayerNumber'])->goToPlay($minute);
                     $team->getPlayer($details['outPlayerNumber'])->goToBench($minute);
                     break;
-
                 case 'goal':
                     $team = $this->getTeamByName($match, $details['team']);
                     $team->addGoal();
                     $player = $team->getPlayer($event['details']['playerNumber']);
                     $player->scoreUp();
-                    break;         
+                    break;       
                 case 'yellowCard':
                     $team = $this->getTeamByName($match, $details['team']);
                     $player = $team->getPlayer($event['details']['playerNumber']);
