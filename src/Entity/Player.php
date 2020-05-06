@@ -11,14 +11,16 @@ class Player
     private string $playStatus;
     private int $inMinute;
     private int $outMinute;
+    private int $score;
 
-    public function __construct(int $number, string $name)
+    public function __construct(int $number, string $name, int $score = 0)
     {
         $this->number = $number;
         $this->name = $name;
         $this->playStatus = self::BENCH_PLAY_STATUS;
         $this->inMinute = 0;
         $this->outMinute = 0;
+        $this->score = $score;
     }
 
     public function getNumber(): int
@@ -66,4 +68,15 @@ class Player
         $this->outMinute = $minute;
         $this->playStatus = self::BENCH_PLAY_STATUS;
     }
+
+    public function getScore()
+    {
+        return $this->score;
+    }
+
+    public function scoreUp()
+    {
+        $this->score++;
+    }
+
 }
