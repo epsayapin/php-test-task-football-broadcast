@@ -107,6 +107,34 @@
         <div class="card-body">
             <table class="table table">
                 <thead>
+                    <tr>
+                        <th>Роль в команде</th>
+                        <th>Времени на поле</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Нападающие</td>
+                        <td>{{team.playTimeByRole('forward')}} минут</td>
+                    </tr>
+                    <tr>
+                        <td>Защитники</td>
+                        <td>{{team.playTimeByRole('quarterback')}} минут</td>
+                    </tr>
+                    <tr>
+                        <td>Вратари</td>
+                        <td>{{team.playTimeByRole('goalkeeper')}} минут</td>
+                    </tr>
+                    <tr>
+                        <td>Полузащитники</td>
+                        <td>{{team.playTimeByRole('midfielder')}} минут</td>
+                    </tr>                
+                </tbody>
+            </table>
+        </div>
+        <div class="card-body">
+            <table class="table table">
+                <thead>
                 <tr>
                     <th>#</th>
                     <th>Имя</th>

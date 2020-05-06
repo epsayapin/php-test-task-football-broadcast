@@ -74,11 +74,13 @@ class MatchBuilder
         $players = [];
         foreach ($teamInfo['players'] as $playerInfo) {
 
-        $players[] = new Player($playerInfo['number'], $playerInfo['name']);
+        $players[] = new Player($playerInfo['number'], $playerInfo['name'], $playerInfo['position']);
 
         }
 
-        return new Team($teamInfo['title'], $teamInfo['country'], $teamInfo['logo'], $players, $teamInfo['coach']);
+        $playTimeByRole = 100;
+
+        return new Team($teamInfo['title'], $teamInfo['country'], $teamInfo['logo'], $players, $teamInfo['coach'], $playTimeByRole);
     }
 
     private function processLogs(Match $match, array $logs): void

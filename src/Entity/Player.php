@@ -13,8 +13,9 @@ class Player
     private int $outMinute;
     private int $score;
     private int $yellowCardsCount;
+    private string $role;
 
-    public function __construct(int $number, string $name, int $score = 0, int $yellowCardsCount = 0)
+    public function __construct(int $number, string $name, string $role, int $score = 0, int $yellowCardsCount = 0)
     {
         $this->number = $number;
         $this->name = $name;
@@ -23,6 +24,7 @@ class Player
         $this->outMinute = 0;
         $this->score = $score;
         $this->yellowCardsCount =  $yellowCardsCount;
+        $this->role = $role;
     }
 
     public function getNumber(): int
@@ -89,6 +91,11 @@ class Player
     public function giveOutYellowCard()
     {
         $this->yellowCardsCount++;
+    }
+
+    public function getRole()
+    {
+        return $this->role;
     }
 
 }
